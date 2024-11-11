@@ -17,12 +17,12 @@ COPY . .
 ENV FLASK_ENV=production
 
 # Set the port to 8080, which is what Cloud Run expects
-ENV PORT 8080
+ENV PORT 8081
 
 # Expose port 8080 to the container
-EXPOSE 8080
+EXPOSE 8081
 
 # Set the default command to run when the container starts
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=8081"]
 
 
