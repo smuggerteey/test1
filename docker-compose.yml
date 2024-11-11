@@ -1,52 +1,11 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  web:
-    build: ./webapp  # Build from the 'webapp' directory
+  flask-app:
+    build: .
     ports:
-      - "8081:8080"  # Exposing port 8080 for Flask application
-    environment:
-      - REDIS_URL=redis://redis:6379
-      - DATABASE_URL=mysql://Tchagaka:${MYSQL_PASSWORD}@mysql/flaskdb  # Reference to mysql service
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}  # Ensure MYSQL_PASSWORD is passed securely
-    depends_on:
-      - redis
-      - mysql  # Make sure MySQL is ready before starting Flask
-    networks:
-      - mynetwork
-
-  redis:
-    image: "redis:alpine"
-    ports:
-      - "6379:6379"  # Exposing Redis port for development (optional)
-    networks:
-      - mynetwork
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 30s
-      retries: 3
-      start_period: 30s
-
-  mysql:
-    image: "mysql:5.7"
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: digitalart
-      MYSQL_USER: Tchagaka
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}  # Make sure MYSQL_PASSWORD is passed
+      - "8080:8080"
     volumes:
-      - mysql-data:/var/lib/mysql  # Persist data across container restarts
-    networks:
-      - mynetwork
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
-      interval: 30s
-      retries: 3
-      start_period: 30s
-
-volumes:
-  mysql-data:  # Volume for MySQL persistence
-
-networks:
-  mynetwork:  # Custom network for communication between containers
-    driver: bridge
+      - .:/app
+    environment:
+      FLASK_ENV: development
