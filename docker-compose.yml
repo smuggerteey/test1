@@ -4,7 +4,7 @@ services:
   web:
     build: ./webapp  # Build from the 'webapp' directory
     ports:
-      - "8080:8080"  # Exposing port 8080 for Flask application
+      - "8081:8080"  # Exposing port 8080 for Flask application
     environment:
       - REDIS_URL=redis://redis:6379
       - DATABASE_URL=mysql://Tchagaka:${MYSQL_PASSWORD}@mysql/flaskdb  # Reference to mysql service
