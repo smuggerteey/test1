@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Registration Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&family=Dancing+Script:wght@500&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .container {
+    width: 100%;
+    max-width: 600px;  /* Increase the max-width to make the container wider */
+    padding: 40px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 20px;
+    backdrop-filter: blur(10px);
+}
+
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #3b82f6;
+        }
+
+        form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center items horizontally */
+    gap: 16px;  /* Add spacing between elements */
+    width: 100%;  /* Ensure form takes full width */
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;  /* Ensure inputs take full width of the container */
+    padding: 15px;
+    margin: 0;  /* Remove extra margins */
+    border: 1px solid #3b82f6;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+button {
+    width: 100%;  /* Ensure the button is the same width as the inputs */
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+    margin: 0;  /* Remove margin for consistent alignment */
+    background-color: #3b82f6;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+        button:hover {
+            background-color: #1e3a8a;
+            transform: scale(1.05);
+        }
+
+        .redirect-link {
+            font-size: 14px;
+            margin-top: 15px;
+            color: #1e3a8a;
+        }
+
+        .redirect-link a {
+            color: #1e3a8a;
+            text-decoration: none;
+        }
+
+        .redirect-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Join the Creative Hub</h1>
+        <form id="registrationForm">
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="role" placeholder="Role" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <button type="submit">Create Account</button>
+        </form>
+        <div class="redirect-link">
+            <p>Already have an account? <a href="login.html">Login Here</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            alert('Account created successfully!');
+            window.location.href = "index.html";  // Redirect to landing page after registration
+        });
+    </script>
+
+</body>
+</html>
