@@ -1,28 +1,21 @@
-# Use the official Python image
-FROM python:3.8-slim
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy requirements.txt for dependency installation
-COPY requirements.txt ./ 
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Install dependencies
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
-COPY . .
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
 
-# Set environment variable to tell Flask it's in production mode
+# Define environment variable
+ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
 
-# Set the port to 8080, which is what Cloud Run expects
-ENV PORT 8081
-
-# Expose port 8080 to the container
-EXPOSE 8081
-
-# Set the default command to run when the container starts
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8081"]
-
-
+# Run app.py when the container launches
+CMD ["python", "app.py"]
